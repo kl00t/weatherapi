@@ -8,6 +8,7 @@ terraform {
   }
 }
 
+# Storage for the Terraform state
 terraform {
   backend "azurerm" {
     resource_group_name  = "tf_rg_blobstore"
@@ -15,6 +16,12 @@ terraform {
     container_name       = "tfstate"
     key                  = "terraform.tfstate"
   }
+}
+
+# Variables
+variable "imagebuild" {
+  type        = string
+  description = "Latest Image Build"
 }
 
 # Provides configuration details for the Azure Terraform provider
@@ -44,7 +51,7 @@ resource "azurerm_container_group" "tfcg_test" {
   os_type             = "Linux"
   container {
     name   = "weatherapi"
-    image  = "scottvaughanamido/weatherapi"
+    image  = "scottvaughanamido/weatherapi:${var.imagebuild}"
     cpu    = "1"
     memory = "1"
     ports {

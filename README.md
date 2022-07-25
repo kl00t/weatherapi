@@ -1,6 +1,5 @@
 # weatherapi
 
-
 ## Azure DevOps: Provision API Infrastructure using Terraform
 
 ### Video
