@@ -8,6 +8,15 @@ terraform {
   }
 }
 
+terraform {
+  backend "azurerm" {
+    resource_group_name  = "tf_rg_blobstore"
+    storage_account_name = "tfstoragesv21041979"
+    container_name       = "tfstate"
+    key                  = "terraform.tfstate"
+  }
+}
+
 # Provides configuration details for the Azure Terraform provider
 provider "azurerm" {
   features {}
